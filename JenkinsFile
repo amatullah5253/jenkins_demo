@@ -1,0 +1,31 @@
+pipeline{
+     agent any
+      stages{
+      stage('Clone REpo')
+      {
+      steps{
+      git branch:'main',url:'https://github.com/amatullah5253/jenkins_demo.git'
+      }
+      }
+      stage('Install dependencies'){
+      steps{
+      sh 'npm install'
+      }
+      }
+      stage('Testing my application'){
+      steps{
+      sh 'npm test'
+      }
+      }
+      stage('Start the application'){
+      input{
+       message 'do you really want to start?'
+       ok "click on ok"
+       submitter 'Amatullah'
+       }
+      steps{
+      sh 'npm start'
+      }
+      }
+      }
+      }
